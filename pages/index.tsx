@@ -2,6 +2,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import pePinkSmall from '../public/pe-pink-small.png'
+import peBlueSmall from '../public/pe-blue-small.png'
+import peGreenSmall from '../public/pe-green-small.png'
 
 const Home: NextPage = () => {
   return (
@@ -14,12 +17,13 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to the Party!
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
+          <Image src={pePinkSmall} alt="Party Enamels Pink" />
+          <Image src={peGreenSmall} alt="Party Enamels Green" />
+          <Image src={peBlueSmall} alt="Party Enamels Blue" />
         </p>
 
         <div className={styles.grid}>
