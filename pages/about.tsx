@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import * as TeamMembers from './api/teammembers'
 
+const capitalize = (s: string) => {
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 const About: NextPage = () => {
   const [members, setMembers] = useState<TeamMembers.Payload>({ data: [] })
@@ -25,26 +28,18 @@ const About: NextPage = () => {
       </div>
       <main>
         <h2>Members</h2>
-        <pre>
-          {JSON.stringify(members, null, "  ")}
-        </pre>
-
-
         <div className={styles.grid}>
           {members.data.map((member) => {
             return (
               <div key={member.name} className={styles.card}>
                 <h4>{member.name}</h4>
                 {TeamMembers.TEAM_MEMBER_LINKS.map((key) => (
-                  <div key={key}><Link  href={member[key]}>{key}</Link></div>
+                  <div className={styles.card} key={key}><Link href={member[key]}>{capitalize(key)}</Link></div>
                 ))
                 }
 
               </div>
             )
-            return Object.entries(member).map(([key, value]) => {
-              return (<div key={key}>{key}: {value}</div>)
-            })
           })}
         </div>
       </main>

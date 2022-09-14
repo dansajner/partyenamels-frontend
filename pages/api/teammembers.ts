@@ -22,7 +22,13 @@ export default function handler(
     data: [{
       name: "Andrew Keith",
       linkedin: "https://www.linkedin.com/in/andrew-keith-0b0b2a1b/",
-      github: "github.com/andrewkeith",
+      github: "https://github.com/andrewkeith",
+      gravatar: "https://www.gravatar.com/avatar/0b0b2a1b"
+    },
+    {
+      name: "Tony Brock",
+      linkedin: "https://www.linkedin.com/in/andrew-keith-0b0b2a1b/",
+      github: "https://github.com/mcsearchin",
       gravatar: "https://www.gravatar.com/avatar/0b0b2a1b"
     },
     ]
