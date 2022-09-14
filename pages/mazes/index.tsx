@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import type { NextPage } from "next";
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
@@ -88,13 +89,18 @@ const getGenerator = (generatorId: number) : MazeGenerator => {
     return maze
 }
 
-const Mazes: NextPage = () => {
-    const random: Random = new Random(1)
-    const generatorId = random.GetIntInRange(1,11)
-    const generator: MazeGenerator = getGenerator(generatorId)
+const random: Random = new Random(1)
 
-    generator.RunGenerator()
-    const image: Image = generator.Display(new DisplayData())
+const Mazes: NextPage = () => {
+    const [generatorId, setGeneratorId] = useState(1)
+    const [image, setImage] = useState(new Image(1, 1))
+    
+    useEffect(() => {
+      const generator: MazeGenerator = getGenerator(generatorId)
+      generator.RunGenerator()
+      setImage(generator.Display(new DisplayData()))
+    }, [generatorId])
+    
 
     return (
         <div className={styles.container}>
@@ -109,6 +115,7 @@ const Mazes: NextPage = () => {
                     Random Maze Generation
                 </h1>
                 <div>
+                    <button onClick={() => setGeneratorId(random.GetIntInRange(1, 11))}>Generate</button>
                 <Canvas id="mazeCanvas" imgData={image}></Canvas>
                 </div>
             </main>
