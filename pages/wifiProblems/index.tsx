@@ -19,7 +19,8 @@ const WifiProblems: NextPage = () => {
 const WifiCarousel = () => {
   return (
     <div>
-      <Carousel showThumbs={false}>
+
+      <Carousel autoPlay={true} interval={3000} autoFocus={true} infiniteLoop={true} showThumbs={false}>
         <div>
           <Image alt="Tony" src={tony1} />
         </div>
