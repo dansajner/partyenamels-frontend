@@ -16,13 +16,21 @@ const WifiProblems: NextPage = () => {
 const WifiCarousel = () =>{
     return (
         <div>
-            <Carousel showThumbs={false}>
+            <Carousel autoPlay={true} interval={3000} autoFocus={true} infiniteLoop={true} showThumbs={false}>
                 <div>
-                    <Image width="500px" height="500px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVUUoZaTmZFcKY71GlOP_SpNLzg-vEccAGKWc1FVes&s" />
+                    <Image
+                        width="500px"
+                        height="500px"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVUUoZaTmZFcKY71GlOP_SpNLzg-vEccAGKWc1FVes&s"
+                    />
                     <p className="legend">Best Wifi Problem</p>
                 </div>
                 <div>
-                    <Image width="500px" height="500px" src="https://images.pexels.com/photos/46166/robin-european-robin-erithacus-rubecula-red-46166.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                    <Image
+                        width="500px"
+                        height="500px"
+                        src="https://images.pexels.com/photos/46166/robin-european-robin-erithacus-rubecula-red-46166.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    />
                     <p className="legend">Best Wifi Problem</p>
                 </div>
             </Carousel>
