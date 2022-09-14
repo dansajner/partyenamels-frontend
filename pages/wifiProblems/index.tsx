@@ -2,6 +2,9 @@ import type { NextPage } from 'next'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from "react-responsive-carousel"
 import Image from "next/image"
+import tony1 from "/public/tony-1.png"
+import tony2 from "/public/tony-2.png"
+import tony3 from "/public/tony-3.png"
 
 const WifiProblems: NextPage = () => {
   return (
@@ -18,12 +21,13 @@ const WifiCarousel = () => {
     <div>
       <Carousel showThumbs={false}>
         <div>
-          <Image width="500px" height="500px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVUUoZaTmZFcKY71GlOP_SpNLzg-vEccAGKWc1FVes&s" />
-          <p className="legend">Best Wifi Problem</p>
+          <Image alt="Tony" src={tony1} />
         </div>
         <div>
-          <Image width="500px" height="500px" src="https://images.pexels.com/photos/46166/robin-european-robin-erithacus-rubecula-red-46166.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
-          <p className="legend">Best Wifi Problem</p>
+          <Image alt="More Tony" src={tony2} />
+        </div>
+        <div>
+          <Image alt="Still Tony" src={tony3} />
         </div>
       </Carousel>
     </div>
