@@ -8,7 +8,7 @@ export type TeamMember = {
 }
 
 type TeamMemberLinkKeys = Exclude<keyof TeamMember, 'name'>;
-export const TEAM_MEMBER_LINKS: TeamMemberLinkKeys[] = ['github', 'gravatar', 'linkedin'];
+export const TEAM_MEMBER_LINKS: TeamMemberLinkKeys[] = ['github', 'linkedin'];
 
 export interface Payload {
   data: TeamMember[]
