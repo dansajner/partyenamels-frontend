@@ -1,23 +1,46 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import styles from '../styles/About.module.css'
-import * as TeamMembers from './api/teammembers'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import styles from "../styles/About.module.css";
+import * as TeamMembers from "./api/teammembers";
 
-const capitalize = (s: string) => {
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
+const gravatarUrl = (links: TeamMembers.TeamMemberLink[]): string => {
+  const link = links.find((link) => link.name === "gravatar");
+  return link!.url;
+};
+
+const TeamMemberLink = ({ displayName, name, url }: TeamMembers.TeamMemberLink) => (
+  <div className={styles.card} key={name}>
+    <Link href={url}>{displayName}</Link>
+  </div>
+);
+
+const TeamMember = ({ links, name }: TeamMembers.TeamMember) => (
+  <div className={styles.cardgrid}>
+    <Image src={gravatarUrl(links)} width="50px" height="50px" alt={name} />
+    <h4>{name}</h4>
+    <div>
+      {links.map((memberLink) => (
+        <TeamMemberLink key={memberLink.name} {...memberLink}></TeamMemberLink>
+      ))}
+    </div>
+  </div>
+);
 
 const About: NextPage = () => {
-  const [members, setMembers] = useState<TeamMembers.Payload>({ data: [] })
+
+  const [members, setMembers] = useState<TeamMembers.Payload>({ data: [] });
+
   useEffect(() => {
-    (async function foo() {
-      const response = await fetch('/api/teammembers')
-      setMembers(await response.json())
-    })()
-  }, [])
+    const fetchMembers = async () => {
+      const response = await fetch("/api/teammembers");
+      return (await response.json()) as TeamMembers.Payload;
+    };
+
+    fetchMembers().then(setMembers).catch(console.error);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -30,27 +53,13 @@ const About: NextPage = () => {
       <main>
         <h2>Members</h2>
         <div className={`${styles.cardlayout}`}>
-          {members.data.map((member) => {
-            return (
-              <div key={member.name} className={styles.cardgrid}>
-                <Image style={{float: "left"}} src={member.gravatar} width="50px" height="50px" alt={member.name} />
-                <h4>{member.name}</h4> 
-                <div>
-                  {TeamMembers.TEAM_MEMBER_LINKS.map((key) => (
-                    <div className={styles.card} key={key}>
-                      <Link href={member[key]}>{capitalize(key)}</Link>
-                    </div>
-                  ))}
-                </div>
-
-              </div>
-            )
-          })}
+          {members.data.map((member) => (
+            <TeamMember key={member.name} {...member}></TeamMember>
+          ))}
         </div>
       </main>
-
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;
