@@ -29,17 +29,17 @@ const Home: NextPage = () => {
 
         <div className={styles.grid}>
           <Link href="/about">
-            <a className={styles.card}>
+            <div className={styles.card}>
               <h2>About Us &rarr;</h2>
               <p>Learn about the Party Enamels team!</p>
-            </a>
+            </div>
           </Link>
 
           <Link href="/mazes">
-            <a className={styles.card}>
+            <div className={styles.card}>
               <h2>Micah&apos;s Mazes &rarr;</h2>
               <p>Random maze generator!</p>
-            </a>
+            </div>
           </Link>
 
           <a
@@ -51,17 +51,17 @@ const Home: NextPage = () => {
           </a>
 
           <Link href="/">
-            <a className={styles.card}>
+            <div className={styles.card}>
               <h2>Cool Feature&rarr;</h2>
               <p>Create some cool feature and put it here.</p>
-            </a>
+            </div>
           </Link>
 
           <Link href="/wifiProblems">
-            <a className={styles.card}>
+            <div className={styles.card}>
               <h2>Problems with your Wi-Fi? &rarr;</h2>
               <p>We feel your pain.</p>
-            </a>
+            </div>
           </Link>
         </div>
       </main>
