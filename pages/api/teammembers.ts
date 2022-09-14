@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import teamMembersJson from './teammembers.json'
 
 export type TeamMember = {
   name: string
@@ -18,21 +19,8 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Payload>
 ) {
-  const retData: Payload = {
-    data: [{
-      name: "Andrew Keith",
-      linkedin: "https://www.linkedin.com/in/andrew-keith-0b0b2a1b/",
-      github: "https://github.com/andrewkeith",
-      gravatar: "https://www.gravatar.com/avatar/0b0b2a1b"
-    },
-    {
-      name: "Tony Brock",
-      linkedin: "https://www.linkedin.com/in/andrew-keith-0b0b2a1b/",
-      github: "https://github.com/mcsearchin",
-      gravatar: "https://www.gravatar.com/avatar/0b0b2a1b"
-    },
-    ]
-  }
+  const data = teamMembersJson.sort((a, b) => a.name.localeCompare(b.name))
+  const retData: Payload = { data }
 
   res.status(200).json(retData)
 }
