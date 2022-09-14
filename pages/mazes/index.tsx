@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { NextPage } from "next";
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
+import styled from 'styled-components'
 
 import {
     Generator as MazeGenerator,
@@ -89,7 +90,54 @@ const getGenerator = (generatorId: number) : MazeGenerator => {
     return maze
 }
 
+const getGeneratorPropertiesTabName = (gId: number) : string => {
+    let retVal: string = '';
+    switch (gId) {
+      case 1:
+        retVal = 'Binary Tree';
+        break;
+      case 2:
+        retVal = 'Sidewinder';
+        break;
+      case 3:
+        retVal = 'Aldous-Broder';
+        break;
+      case 4:
+        retVal = "Wilson's";
+        break;
+      case 5:
+        retVal = 'Hunt and Kill';
+        break;
+      case 6:
+        retVal = 'Recursive Backtracker';
+        break;
+      case 7:
+        retVal = "Kruskal's";
+        break;
+      case 8:
+        retVal = "Prims's";
+        break;
+      case 9:
+        retVal = 'Growing Tree';
+        break;
+      case 10:
+        retVal = "Eller's";
+        break;
+      case 11:
+        retVal = 'Recursive Subdivision';
+        break;
+    }
+    return retVal;
+  }
+
 const random: Random = new Random(1)
+
+const StyledMazeSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  align-items: center;
+`
 
 const Mazes: NextPage = () => {
     const [generatorId, setGeneratorId] = useState(1)
@@ -114,10 +162,11 @@ const Mazes: NextPage = () => {
                 <h1 className={styles.title}>
                     Random Maze Generation
                 </h1>
-                <div>
+                <StyledMazeSection>
+                    <p>{getGeneratorPropertiesTabName(generatorId)}</p>
+                    <Canvas id="mazeCanvas" imgData={image}></Canvas>
                     <button onClick={() => setGeneratorId(random.GetIntInRange(1, 11))}>Generate</button>
-                <Canvas id="mazeCanvas" imgData={image}></Canvas>
-                </div>
+                </StyledMazeSection>
             </main>
         </div>
     )
