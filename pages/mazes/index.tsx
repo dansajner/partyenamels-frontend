@@ -142,13 +142,13 @@ const StyledMazeSection = styled.div`
 const Mazes: NextPage = () => {
     const [generatorId, setGeneratorId] = useState(1)
     const [image, setImage] = useState(new Image(1, 1))
-    
+
     useEffect(() => {
       const generator: MazeGenerator = getGenerator(generatorId)
       generator.RunGenerator()
       setImage(generator.Display(new DisplayData()))
     }, [generatorId])
-    
+
 
     return (
         <div className={styles.container}>
@@ -164,6 +164,7 @@ const Mazes: NextPage = () => {
                 </h1>
                 <StyledMazeSection>
                     <p>{getGeneratorPropertiesTabName(generatorId)}</p>
+                    {/* @ts-ignore */}
                     <Canvas id="mazeCanvas" imgData={image}></Canvas>
                     <button onClick={() => setGeneratorId(random.GetIntInRange(1, 11))}>Generate</button>
                 </StyledMazeSection>
