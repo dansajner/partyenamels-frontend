@@ -1,0 +1,101 @@
+.partyFox {
+  display: flex !important;
+}
+
+.partyHouse {
+  background-color: green;
+  background: repeating-radial-gradient(#e66465, #9198e5 20%);
+  animation: rave 3s infinite;
+}
+
+.partyTime {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  text-shadow: 10px 10px black;
+  text-align: center;
+  width: 100%;
+  animation: fadein 2s infinite;
+  opacity: 0;
+}
+
+.fox {
+  margin: 4px !important;
+  animation: hue 4s infinite;
+  height: 120px;
+}
+
+.fox:nth-child(4n) {
+  animation: faded 5s infinite;
+}
+
+.fox:nth-child(2n + 2) {
+  animation: jazz 3s infinite;
+}
+
+/* .fox:nth-child(-n + 66) {
+  z-index: 10;
+  animation: resize 7s infinite;
+} */
+
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes jazz {
+  0% {
+    transform: rotate(30deg);
+  }
+  30% {
+    transform: rotate(-45deg);
+  }
+  60% {
+    transform: rotate(15deg);
+  }
+  90% {
+    transform: rotate(80deg);
+  }
+}
+
+@keyframes faded {
+  to {
+    opacity: 1;
+  }
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes resize {
+  from {
+    filter: scale(0.2);
+  }
+  to {
+    filter: scale(3.8);
+  }
+}
+
+@keyframes rave {
+  from {
+    filter: hue-rotate(3600deg);
+  }
+  to {
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes fadein {
+  to {
+    opacity: 1;
+  }
+  from {
+    opacity: 0;
+  }
+}

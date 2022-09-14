@@ -1,11 +1,11 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
-import pePinkSmall from '../public/pe-pink-small.png'
-import peBlueSmall from '../public/pe-blue-small.png'
-import peGreenSmall from '../public/pe-green-small.png'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
+import pePinkSmall from "../public/pe-pink-small.png";
+import peBlueSmall from "../public/pe-blue-small.png";
+import peGreenSmall from "../public/pe-green-small.png";
 
 const Home: NextPage = () => {
   return (
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to the Party!
+          Welcome to the Party! <a href="/party">🎉</a>
         </h1>
 
         <p className={styles.description}>
@@ -35,10 +35,12 @@ const Home: NextPage = () => {
             </a>
           </Link>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+          <Link href="/mazes">
+            <a className={styles.card}>
+              <h2>Micah&apos;s Mazes &rarr;</h2>
+              <p>Random maze generator!</p>
+            </a>
+          </Link>
 
           <a
             href="https://github.com/vercel/next.js/tree/canary/examples"
@@ -66,14 +68,19 @@ const Home: NextPage = () => {
 
       <footer className={styles.footer}>
         <a>
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
-            <Image src={peGreenSmall} alt="Party Enamels Green" width={42} height={36} />
+            <Image
+              src={peGreenSmall}
+              alt="Party Enamels Green"
+              width={42}
+              height={36}
+            />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
