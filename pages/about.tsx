@@ -1,56 +1,89 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import styles from '../styles/About.module.css'
-import * as TeamMembers from './api/teammembers'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import peBlueSmall from "../public/pe-blue-small.png";
+import peGreenSmall from "../public/pe-green-small.png";
+import pePinkSmall from "../public/pe-pink-small.png";
+import styles from "../styles/About.module.css";
+import type { Payload, TeamMember, TeamMemberLink } from "./api/teammembers";
 
-const capitalize = (s: string) => {
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
+const gravatarUrl = (links: TeamMemberLink[]): string => {
+  const link = links.find((link) => link.name === "gravatar");
+  return link!.url;
+};
+
+const TeamMemberLink = ({ displayName, name, url }: TeamMemberLink) => (
+  <Link href={url}>
+    <a className={styles.card} key={name}>
+      {displayName}
+    </a>
+  </Link>
+);
+
+const TeamMember = ({ links, name }: TeamMember) => (
+  <div className={styles.membergrid}>
+    <Image src={gravatarUrl(links)} width="50px" height="50px" alt={name} />
+    <h3>{name}</h3>
+    <div>
+      {links.map((memberLink) => (
+        <TeamMemberLink key={memberLink.name} {...memberLink}></TeamMemberLink>
+      ))}
+    </div>
+  </div>
+);
 
 const About: NextPage = () => {
-  const [members, setMembers] = useState<TeamMembers.Payload>({ data: [] })
+  const [members, setMembers] = useState<Payload>({ data: [] });
+
   useEffect(() => {
-    (async function foo() {
-      const response = await fetch('/api/teammembers')
-      setMembers(await response.json())
-    })()
-  }, [])
+    const fetchMembers = async () => {
+      const response = await fetch("/api/teammembers");
+      return (await response.json()) as Payload;
+    };
+
+    fetchMembers().then(setMembers).catch(console.error);
+  }, []);
 
   return (
     <div className={styles.container}>
       <Head>
         <title>Party Enamels - About</title>
       </Head>
-      <div>
-        <h1>About Us</h1>
-      </div>
-      <main>
-        <h2>Members</h2>
-        <div className={`${styles.cardlayout}`}>
-          {members.data.map((member) => {
-            return (
-              <div key={member.name} className={styles.cardgrid}>
-                <Image style={{float: "left"}} src={member.gravatar} width="50px" height="50px" alt={member.name} />
-                <h4>{member.name}</h4> 
-                <div>
-                  {TeamMembers.TEAM_MEMBER_LINKS.map((key) => (
-                    <div className={styles.card} key={key}>
-                      <Link href={member[key]}>{capitalize(key)}</Link>
-                    </div>
-                  ))}
-                </div>
 
-              </div>
-            )
-          })}
+      <main className={styles.main}>
+        <h1 className={styles.title}>Meet the Party Enamels!</h1>
+
+        <p className={styles.description}>
+          <Image src={pePinkSmall} alt="Party Enamels Pink" />
+          <Image src={peGreenSmall} alt="Party Enamels Green" />
+          <Image src={peBlueSmall} alt="Party Enamels Blue" />
+        </p>
+
+        <h2>Members</h2>
+        <div className={`${styles.grid}`}>
+          {members.data.map((member) => (
+            <TeamMember key={member.name} {...member}></TeamMember>
+          ))}
         </div>
       </main>
 
+      <footer className={styles.footer}>
+        <a>
+          Powered by{" "}
+          <span className={styles.logo}>
+            <Image
+              src={peGreenSmall}
+              alt="Party Enamels Green"
+              width={42}
+              height={36}
+            />
+          </span>
+        </a>
+      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;
