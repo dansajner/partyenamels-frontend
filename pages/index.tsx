@@ -1,11 +1,11 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
-import pePinkSmall from '../public/pe-pink-small.png'
-import peBlueSmall from '../public/pe-blue-small.png'
-import peGreenSmall from '../public/pe-green-small.png'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
+import pePinkSmall from "../public/pe-pink-small.png";
+import peBlueSmall from "../public/pe-blue-small.png";
+import peGreenSmall from "../public/pe-green-small.png";
 
 const Home: NextPage = () => {
   return (
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to the Party!
+          Welcome to the Party! <a href="/party">🎉</a>
         </h1>
 
         <p className={styles.description}>
@@ -59,14 +59,19 @@ const Home: NextPage = () => {
 
       <footer className={styles.footer}>
         <a>
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
-            <Image src={peGreenSmall} alt="Party Enamels Green" width={42} height={36} />
+            <Image
+              src={peGreenSmall}
+              alt="Party Enamels Green"
+              width={42}
+              height={36}
+            />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
