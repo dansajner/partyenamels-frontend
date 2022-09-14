@@ -35,10 +35,12 @@ const Home: NextPage = () => {
             </a>
           </Link>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+          <Link href="/mazes">
+            <a className={styles.card}>
+              <h2>Micah&apos;s Mazes &rarr;</h2>
+              <p>Random maze generator!</p>
+            </a>
+          </Link>
 
           <a
             href="https://github.com/vercel/next.js/tree/canary/examples"
