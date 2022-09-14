@@ -5,11 +5,6 @@
 .main {
   min-height: 100vh;
   padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .footer {
@@ -66,11 +61,20 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  --gravatar-width: 50px;
+  --grid-cell-width: calc(35ch - var(--gravatar-width));
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min-content, var(--grid-cell-width))
+  );
+  grid-template-rows: repeat(
+    auto-fill,
+    minmax(min-content, var(--grid-cell-width))
+  );
+  grid-auto-flow: row dense;
+  grid-gap: 16px;
 }
 
 .card {
@@ -82,6 +86,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  display: block;
 }
 
 .card:hover,
@@ -108,20 +113,13 @@
   margin-bottom: 15px;
 }
 
-.cardlayout {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto, 1fr);
-  grid-gap: 16px;
-}
-
-.cardgrid {
+.membergrid {
   display: grid;
   grid-template-areas:
     "gravatar name"
     "links links";
-  grid-template-columns: 50px auto;
-  grid-template-rows: 50px auto;
+  grid-template-columns: var(--gravatar-width) auto;
+  grid-template-rows: var(--gravatar-width) auto;
   grid-gap: 8px;
   border-radius: 4px;
   align-items: center;
@@ -129,13 +127,13 @@
   border: thin solid #111;
 }
 
-.cardgrid Image {
+.membergrid Image {
   grid-area: gravatar;
 }
-.cardgrid .h4 {
+.membergrid .h4 {
   grid-area: name;
 }
-.cardgrid div {
+.membergrid div {
   grid-area: links;
 }
 
