@@ -54,6 +54,13 @@ const Home: NextPage = () => {
               <p>Create some cool feature and put it here.</p>
             </a>
           </Link>
+
+          <Link href="/wifiProblems">
+            <a className={styles.card}>
+              <h2>Problems with your Wi-Fi? &rarr;</h2>
+              <p>We feel your pain.</p>
+            </a>
+          </Link>
         </div>
       </main>
 
