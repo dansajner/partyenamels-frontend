@@ -1,14 +1,14 @@
 import type { NextPage } from 'next'
-import styles from '/styles/Home.module.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
-import { Carousel} from "react-responsive-carousel";
-import Image from "next/image";
+import { Carousel } from "react-responsive-carousel"
+import Image from "next/image"
 
 const WifiProblems: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <h1>WifiProblems</h1>
-        <WifiCarousel />
+      <WifiCarousel />
+      <iframe width="100%" height="115" scrolling="no" frameBorder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/307025543&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
     </div>
   )
 }
