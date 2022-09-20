@@ -5,6 +5,7 @@ import Image from "next/image"
 import tony1 from "/public/tony-1.png"
 import tony2 from "/public/tony-2.png"
 import tony3 from "/public/tony-3.png"
+import tony4 from "/public/tony-4.png"
 
 const WifiProblems: NextPage = () => {
   return (
@@ -19,17 +20,12 @@ const WifiProblems: NextPage = () => {
 const WifiCarousel = () => {
   return (
     <div>
-
       <Carousel autoPlay={true} interval={3000} autoFocus={true} infiniteLoop={true} showThumbs={false}>
-        <div>
-          <Image alt="Tony" src={tony1} />
-        </div>
-        <div>
-          <Image alt="More Tony" src={tony2} />
-        </div>
-        <div>
-          <Image alt="Still Tony" src={tony3} />
-        </div>
+        {[tony1, tony2, tony3, tony4].map((tony, index) => {
+          return (
+            <Image key={index} alt="Tony" src={tony} />
+          )
+        })}
       </Carousel>
     </div>
   )
